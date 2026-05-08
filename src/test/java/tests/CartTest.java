@@ -11,7 +11,9 @@ import pages.CartPage;
 
 public class CartTest extends BaseTest {
     //добавление товара в корзину
-    @Test
+    @Test(description = "Проверка добавления товара в корзину",
+            testName = "Проверка добавления товара в корзину",
+            groups = {"smoke"})
     public void addProductToCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -24,7 +26,8 @@ public class CartTest extends BaseTest {
     }
 
     //корзина не пустая после добавления товара
-    @Test
+    @Test(description = "Проверка, что после добавления товара в корзину, она не пустая",
+            testName = "Проверка, что корзина не пустая")
     public void cartIsNotEmptyAfterAddProduct() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -35,7 +38,8 @@ public class CartTest extends BaseTest {
     }
 
     //проверка работы кнопки вернуться на станицу товаров
-    @Test
+    @Test(description = "Проверка работы кнопки возврата из корзины на страницу товаров",
+            testName = "Проверка работы кнопки Continue Shopping")
     public void checkButtonContinueShopping() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -46,7 +50,9 @@ public class CartTest extends BaseTest {
     }
 
     //проверка кнопки чекаут
-    @Test
+    @Test(description = "Проверка работы кнопки перехода к оформлению товара из корзины ",
+            testName = "Проверка работы кнопки Checkout",
+            groups = {"smoke"})
     public void checkButtonCheckout() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -58,7 +64,8 @@ public class CartTest extends BaseTest {
     }
 
     //проверка цены товара
-    @Test
+    @Test(description = "Проверка цены товара в корзине",
+            testName = "Проверка цены товара в корзине")
     public void productPriceInCartIsCorrect() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -72,7 +79,8 @@ public class CartTest extends BaseTest {
     }
 
     //удаление товара
-    @Test
+    @Test(description = "Проверка удаления товара из корзины",
+            testName = "Проверка удаления товара")
     public void removeProductFromCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

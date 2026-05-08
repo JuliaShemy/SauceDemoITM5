@@ -5,7 +5,8 @@ import org.testng.annotations.Test;
 
 public class LocatorTest extends BaseTest {
 
-    @Test
+    @Test(description = "Проверка локаторов",
+            testName = "Проверка локаторов")
     public void checkLocator() {
 
         driver.get("https://www.saucedemo.com/");
@@ -73,5 +74,5 @@ public class LocatorTest extends BaseTest {
         driver.findElement(By.cssSelector("[id$='backpack']"));
         //- [attribute*=value]
         driver.findElement(By.cssSelector("[id*='sauce-labs']"));
-        }
+    }
 }

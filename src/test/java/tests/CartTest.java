@@ -5,6 +5,8 @@ c. Перейти в корзину
 d. Проверить (assertEquals) его имя в корзине
  */
 
+import io.qameta.allure.*;
+import jdk.jfr.Description;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CartPage;
@@ -14,10 +16,14 @@ public class CartTest extends BaseTest {
     @Test(description = "Проверка добавления товара в корзину",
             testName = "Проверка добавления товара в корзину",
             groups = {"smoke"})
+    @Description("Проверка добавления товара в корзину")
+    @Severity(SeverityLevel.CRITICAL)
+    @TmsLink("ITM-5")
+    @Issue("ITM-5")
+    @Owner("Julia Shem")
     public void addProductToCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
-
         String nameItem = productsPage.getFirstItemName();
         productsPage.addFirstItemToCart();
         productsPage.openCart();
@@ -28,6 +34,7 @@ public class CartTest extends BaseTest {
     //корзина не пустая после добавления товара
     @Test(description = "Проверка, что после добавления товара в корзину, она не пустая",
             testName = "Проверка, что корзина не пустая")
+    @Description("Проверка, что корзина не пустая")
     public void cartIsNotEmptyAfterAddProduct() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -40,6 +47,7 @@ public class CartTest extends BaseTest {
     //проверка работы кнопки вернуться на станицу товаров
     @Test(description = "Проверка работы кнопки возврата из корзины на страницу товаров",
             testName = "Проверка работы кнопки Continue Shopping")
+    @Description("Проверка работы кнопки возврата из корзины на страницу товаров")
     public void checkButtonContinueShopping() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -53,6 +61,7 @@ public class CartTest extends BaseTest {
     @Test(description = "Проверка работы кнопки перехода к оформлению товара из корзины ",
             testName = "Проверка работы кнопки Checkout",
             groups = {"smoke"})
+    @Description("Проверка работы кнопки перехода к оформлению товара")
     public void checkButtonCheckout() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -66,6 +75,7 @@ public class CartTest extends BaseTest {
     //проверка цены товара
     @Test(description = "Проверка цены товара в корзине",
             testName = "Проверка цены товара в корзине")
+    @Description("Проверка цены товара в корзине")
     public void productPriceInCartIsCorrect() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");
@@ -81,6 +91,7 @@ public class CartTest extends BaseTest {
     //удаление товара
     @Test(description = "Проверка удаления товара из корзины",
             testName = "Проверка удаления товара")
+    @Description("Проверка удаления товара из корзины")
     public void removeProductFromCart() {
         loginPage.open();
         loginPage.login("standard_user", "secret_sauce");

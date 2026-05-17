@@ -4,19 +4,18 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
-import org.testng.annotations.AfterMethod;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Optional;
-import org.testng.annotations.Parameters;
+import org.testng.annotations.*;
 import pages.LoginPage;
 import pages.ProductsPage;
+import utils.TestListener;
 
 import java.util.HashMap;
 
+@Listeners(TestListener.class)
 public class BaseTest {
-    WebDriver driver;
-    LoginPage loginPage;
-    ProductsPage productsPage;
+    protected WebDriver driver;
+    protected LoginPage loginPage;
+    protected ProductsPage productsPage;
 @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true)
     public void setUp(@Optional("chrome") String browser) {

@@ -3,6 +3,10 @@
 <suite thread-count="2"
        name="Sauce Demo ITM5"
        parallel="classes">
+    <listeners>
+        <listener class-name="utils.TestListener"></listener>
+        <listener class-name="utils.AnnotationTransformer"/>
+    </listeners>
 
     <test name="Thread 1">
         <classes>

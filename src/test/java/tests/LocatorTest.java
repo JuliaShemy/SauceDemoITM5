@@ -1,5 +1,6 @@
 package tests;
 
+import jdk.jfr.Description;
 import org.openqa.selenium.By;
 import org.testng.annotations.Test;
 
@@ -7,6 +8,7 @@ public class LocatorTest extends BaseTest {
 
     @Test(description = "Проверка локаторов",
             testName = "Проверка локаторов")
+    @Description("Проверка локаторов")
     public void checkLocator() {
 
         driver.get("https://www.saucedemo.com/");

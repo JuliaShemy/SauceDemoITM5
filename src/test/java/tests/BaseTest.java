@@ -2,6 +2,7 @@ package tests;
 
 import io.qameta.allure.Description;
 import io.qameta.allure.testng.AllureTestNg;
+import lombok.extern.log4j.Log4j2;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.chrome.ChromeOptions;
@@ -13,7 +14,7 @@ import pages.ProductsPage;
 import utils.TestListener;
 
 import java.util.HashMap;
-
+@Log4j2
 @Listeners({AllureTestNg.class, TestListener.class})
 public class BaseTest {
     protected WebDriver driver;
@@ -23,6 +24,7 @@ public class BaseTest {
     @BeforeMethod(alwaysRun = true, description = "Настройка браузера")
 @Description("Настройка браузера")
     public void setUp(@Optional("chrome") String browser, ITestContext iTestContext) {
+    log.info("Starting test in '{}' browser", browser);
         if (browser.equalsIgnoreCase("chrome")){
             ChromeOptions options = new ChromeOptions();
             HashMap<String, Object> chromePrefs = new HashMap<>();
@@ -46,6 +48,7 @@ public class BaseTest {
     @AfterMethod(alwaysRun = true, description = "Закрытие браузера")
     @Description("Закрытие браузера")
     public void tearDawn() {
+        log.info("Closing browser");
         driver.quit();
     }
 }

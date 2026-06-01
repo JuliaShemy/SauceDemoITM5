@@ -2,13 +2,14 @@ package tests;
 
 import io.qameta.allure.*;
 import jdk.jfr.Description;
+import lombok.extern.log4j.Log4j2;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 import utils.AllureUtils;
 
 import static org.testng.Assert.assertEquals;
 import static utils.AllureUtils.takeScreenshot;
-
+@Log4j2
 public class LoginTest extends BaseTest {
     @Test(description = "Проверка входа в систему с позитивными кредами",
             testName = "Проверка входа в систему с позитивными кредами",
@@ -24,8 +25,9 @@ public class LoginTest extends BaseTest {
     @Flaky
     @Owner("Julia Shem")
     public void checkLoginWithPositiveCred() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        log.info("Checking login with valid credentials");
+        loginPage.open()
+                .login("standard_user", "secret_sauce");
         assertEquals(productsPage.getTitle(), "Products");
     }
 
@@ -47,6 +49,7 @@ public class LoginTest extends BaseTest {
     @TmsLink("ITM-5")
     @Issue("ITM-5")
     public void negativeLogin(String user, String password, String errorMessage) {
+        log.info("Checking login with invalid credentials: user='{}'", user);
         loginPage.open();
         loginPage.login(user, password);
         assertEquals(loginPage.getErrorMessage(), errorMessage);

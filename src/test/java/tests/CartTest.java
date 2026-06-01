@@ -7,10 +7,11 @@ d. Проверить (assertEquals) его имя в корзине
 
 import io.qameta.allure.*;
 import jdk.jfr.Description;
+import lombok.extern.log4j.Log4j2;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 import pages.CartPage;
-
+@Log4j2
 public class CartTest extends BaseTest {
     //добавление товара в корзину
     @Test(description = "Проверка добавления товара в корзину",
@@ -22,11 +23,12 @@ public class CartTest extends BaseTest {
     @Issue("ITM-5")
     @Owner("Julia Shem")
     public void addProductToCart() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        log.info("Checking adding product to cart");
+        loginPage.open()
+                .login("standard_user", "secret_sauce");
         String nameItem = productsPage.getFirstItemName();
-        productsPage.addFirstItemToCart();
-        productsPage.openCart();
+        productsPage.addFirstItemToCart()
+                .openCart();
         CartPage cartPage = new CartPage(driver);
         Assert.assertEquals(cartPage.getProductName(), nameItem);
     }
@@ -36,10 +38,11 @@ public class CartTest extends BaseTest {
             testName = "Проверка, что корзина не пустая")
     @Description("Проверка, что корзина не пустая")
     public void cartIsNotEmptyAfterAddProduct() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addFirstItemToCart();
-        productsPage.openCart();
+        log.info("Checking cart is not empty after adding product");
+        loginPage.open()
+                .login("standard_user", "secret_sauce")
+                .addFirstItemToCart()
+                .openCart();
         CartPage cartPage = new CartPage(driver);
         Assert.assertFalse(cartPage.isCartEmpty());
     }
@@ -49,9 +52,10 @@ public class CartTest extends BaseTest {
             testName = "Проверка работы кнопки Continue Shopping")
     @Description("Проверка работы кнопки возврата из корзины на страницу товаров")
     public void checkButtonContinueShopping() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.openCart();
+        log.info("Checking Continue Shopping button");
+        loginPage.open()
+                .login("standard_user", "secret_sauce")
+                .openCart();
         CartPage cartPage = new CartPage(driver);
         cartPage.clickContinueShopping();
         Assert.assertTrue(driver.getCurrentUrl().contains("inventory.html"));
@@ -63,10 +67,11 @@ public class CartTest extends BaseTest {
             groups = {"smoke"})
     @Description("Проверка работы кнопки перехода к оформлению товара")
     public void checkButtonCheckout() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addFirstItemToCart();
-        productsPage.openCart();
+        log.info("Checking Checkout button");
+        loginPage.open()
+                .login("standard_user", "secret_sauce")
+                .addFirstItemToCart()
+                .openCart();
         CartPage cartPage = new CartPage(driver);
         cartPage.clickCheckout();
         Assert.assertTrue(driver.getCurrentUrl().contains("checkout-step-one"));
@@ -77,12 +82,12 @@ public class CartTest extends BaseTest {
             testName = "Проверка цены товара в корзине")
     @Description("Проверка цены товара в корзине")
     public void productPriceInCartIsCorrect() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-
+        log.info("Checking product price in cart");
+        loginPage.open()
+                .login("standard_user", "secret_sauce");
         String expectedPrice = productsPage.getFirstItemPrice();
-        productsPage.addFirstItemToCart();
-        productsPage.openCart();
+        productsPage.addFirstItemToCart()
+                .openCart();
         CartPage cartPage = new CartPage(driver);
         String actualPrice = cartPage.getProductPrice();
         Assert.assertEquals(actualPrice, expectedPrice);
@@ -93,10 +98,11 @@ public class CartTest extends BaseTest {
             testName = "Проверка удаления товара")
     @Description("Проверка удаления товара из корзины")
     public void removeProductFromCart() {
-        loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
-        productsPage.addFirstItemToCart();
-        productsPage.openCart();
+        log.info("Checking removing product from cart");
+        loginPage.open()
+                .login("standard_user", "secret_sauce")
+                .addFirstItemToCart()
+                .openCart();
         CartPage cartPage = new CartPage(driver);
         cartPage.removeProduct();
         Assert.assertTrue(cartPage.isCartEmpty());

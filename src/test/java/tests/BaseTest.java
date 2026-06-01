@@ -20,10 +20,14 @@ public class BaseTest {
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected ProductsPage productsPage;
+    protected String user = System.getProperty("user");
+    protected String password = System.getProperty("password");
 @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true, description = "Настройка браузера")
 @Description("Настройка браузера")
     public void setUp(@Optional("chrome") String browser, ITestContext iTestContext) {
+    System.out.println(user);
+    System.out.println(password);
         if (browser.equalsIgnoreCase("chrome")){
             ChromeOptions options = new ChromeOptions();
             HashMap<String, Object> chromePrefs = new HashMap<>();

@@ -78,7 +78,7 @@ public class CartTest extends BaseTest {
     @Description("Проверка цены товара в корзине")
     public void productPriceInCartIsCorrect() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
 
         String expectedPrice = productsPage.getFirstItemPrice();
         productsPage.addFirstItemToCart();

@@ -1,11 +1,17 @@
 package pages;
 
+import io.qameta.allure.Step;
 import org.openqa.selenium.WebDriver;
 
-public class BasePage {
+public abstract class BasePage {
     WebDriver driver;
-public final String BASE_URL = "https://www.saucedemo.com/";
+    public final String BASE_URL = "https://www.saucedemo.com/";
+
     public BasePage(WebDriver driver) {
         this.driver = driver;
     }
+
+    public abstract BasePage open();
+
+    public abstract BasePage isPageOpened();
 }

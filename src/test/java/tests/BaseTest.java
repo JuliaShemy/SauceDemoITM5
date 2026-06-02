@@ -21,8 +21,8 @@ public class BaseTest {
     protected WebDriver driver;
     protected LoginPage loginPage;
     protected ProductsPage productsPage;
-    protected String user = System.getProperty("user");
-    protected String password = System.getProperty("password");
+    protected String user = System.getProperty("user", PropertyReader.getProperty("user"));
+    protected String password = System.getProperty("password", PropertyReader.getProperty("password"));
 @Parameters({"browser"})
     @BeforeMethod(alwaysRun = true, description = "Настройка браузера")
 @Description("Настройка браузера")

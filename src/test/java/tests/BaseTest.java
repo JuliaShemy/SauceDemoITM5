@@ -12,8 +12,9 @@ import org.testng.annotations.*;
 import pages.LoginPage;
 import pages.ProductsPage;
 import utils.TestListener;
-
+import utils.PropertyReader;
 import java.util.HashMap;
+import java.util.Properties;
 
 @Listeners({AllureTestNg.class, TestListener.class})
 public class BaseTest {

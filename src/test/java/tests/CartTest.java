@@ -94,7 +94,7 @@ public class CartTest extends BaseTest {
     @Description("Проверка удаления товара из корзины")
     public void removeProductFromCart() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addFirstItemToCart();
         productsPage.openCart();
         CartPage cartPage = new CartPage(driver);

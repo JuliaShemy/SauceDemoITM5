@@ -13,8 +13,8 @@ public class LocatorTest extends BaseTest {
 
         driver.get("https://www.saucedemo.com/");
         //id
-        driver.findElement(By.id("user-name")).sendKeys("standard_user");
-        driver.findElement(By.id("password")).sendKeys("secret_sauce");
+        driver.findElement(By.id("user-name")).sendKeys(user);
+        driver.findElement(By.id("password")).sendKeys(password);
         //name
         driver.findElement(By.name("login-button")).click();
         //• classname

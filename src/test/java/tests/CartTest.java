@@ -23,7 +23,7 @@ public class CartTest extends BaseTest {
     @Owner("Julia Shem")
     public void addProductToCart() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         String nameItem = productsPage.getFirstItemName();
         productsPage.addFirstItemToCart();
         productsPage.openCart();
@@ -37,7 +37,7 @@ public class CartTest extends BaseTest {
     @Description("Проверка, что корзина не пустая")
     public void cartIsNotEmptyAfterAddProduct() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addFirstItemToCart();
         productsPage.openCart();
         CartPage cartPage = new CartPage(driver);
@@ -50,7 +50,7 @@ public class CartTest extends BaseTest {
     @Description("Проверка работы кнопки возврата из корзины на страницу товаров")
     public void checkButtonContinueShopping() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.openCart();
         CartPage cartPage = new CartPage(driver);
         cartPage.clickContinueShopping();
@@ -64,7 +64,7 @@ public class CartTest extends BaseTest {
     @Description("Проверка работы кнопки перехода к оформлению товара")
     public void checkButtonCheckout() {
         loginPage.open();
-        loginPage.login("standard_user", "secret_sauce");
+        loginPage.login(user, password);
         productsPage.addFirstItemToCart();
         productsPage.openCart();
         CartPage cartPage = new CartPage(driver);
